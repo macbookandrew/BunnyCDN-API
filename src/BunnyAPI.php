@@ -1,5 +1,7 @@
 <?php
 
+namespace CP6\BunnyCDN;
+
 /**
  * Bunny CDN storage zone API class
  * @version  1.2
@@ -748,7 +750,7 @@ class BunnyAPI
                 if (ftp_delete($this->connection, "" . $old_dir . "$old_name")) {
                     if ($db_log) {
                         $db = $this->db_connect();
-                        $insert = $db->prepare('INSERT INTO file_history (new_name, old_name, zone_name, new_dir, old_dir) 
+                        $insert = $db->prepare('INSERT INTO file_history (new_name, old_name, zone_name, new_dir, old_dir)
                                  VALUES (?, ?, ?, ?, ?)');
                         $insert->execute([$new_name, $old_name, $this->storage_name, $new_dir, $old_dir]);
                         unlink("tempRENAME.$file_type");//Delete temp file
@@ -1054,7 +1056,7 @@ class BunnyAPI
             } else {
                 $enabled = 0;
             }
-            $insert = $db->prepare('INSERT INTO `storagezones` (`id`, `name`, `storage_used`, `enabled`, `files_stored`, `date_modified`) 
+            $insert = $db->prepare('INSERT INTO `storagezones` (`id`, `name`, `storage_used`, `enabled`, `files_stored`, `date_modified`)
                 VALUES (:id, :name, :storage_used, :enabled, :files_stored, :date_modified)
                 ON DUPLICATE KEY UPDATE `storage_used` = :storage_used, `enabled` = :enabled,`files_stored` = :files, `date_modified` = :date_modified');
             $insert->execute([

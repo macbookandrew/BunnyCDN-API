@@ -1,0 +1,11 @@
+{
+    "name": "cp6/bunny-cdn-api",
+    "description": "BunnyCDN API for PHP",
+    "type": "library",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "cp6\\BunnyCDN\\": "src/"
+        }
+    }
+}
